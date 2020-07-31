@@ -22,7 +22,6 @@ import java.util.Map;
 
 /**
  * @author : dengchao
- * @date : 2020 07 31
  */
 @Configuration
 @EnableConfigurationProperties(value = {DruidProperties.class, DsRoutingSetProperties.class})

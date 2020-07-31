@@ -3,6 +3,7 @@ package com.example.multidatasource.aop;
 import com.example.multidatasource.annotation.Router;
 import com.example.multidatasource.core.IRouting;
 import com.example.multidatasource.dynamicdatasource.MultiDataSourceHolder;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.BeanUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
@@ -20,10 +21,10 @@ import java.lang.reflect.Method;
 
 /**
  * @author : dengchao
- * @date : 2020 07 31
  */
 @Aspect
 @Component
+@Slf4j
 public class RoutingAspect {
 
     @Autowired
@@ -35,7 +36,6 @@ public class RoutingAspect {
 
     @Before("pointcut()")
     public void before(JoinPoint joinPoint) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
-        long beginTime = System.currentTimeMillis();
         //获取方法调用名称
         Method method = getInvokeMethod(joinPoint);
         //获取指定的注解
@@ -53,7 +53,7 @@ public class RoutingAspect {
                 if (!StringUtils.isEmpty(routingFieldValue)) {
                     String dbKey = routing.getDataSourceKey(routingFieldValue);
                     String tbKey = routing.getTableKey(routingFieldValue);
-                    System.out.println("选择的数据库是 : " + dbKey + " 选择的表是 : " + tbKey);
+                    log.info("选择的数据库是{},选择的表是{}",dbKey,tbKey);
                     havingRoutingField = true;
                     break;
                 } else {
@@ -62,7 +62,7 @@ public class RoutingAspect {
             }
 
             if (!havingRoutingField) {
-                System.out.println("入参中没有包含路由字段");
+                log.error("入参中没有包含路由字段");
             }
         }
     }

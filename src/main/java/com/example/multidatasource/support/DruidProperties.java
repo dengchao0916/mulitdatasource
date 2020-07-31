@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author : dengchao
- * @date : 2020 07 31
  */
 @ConfigurationProperties(prefix = "spring.datasource")
 @Data

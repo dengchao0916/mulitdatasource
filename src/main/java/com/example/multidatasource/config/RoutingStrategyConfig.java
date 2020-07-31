@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @author : dengchao
- * @date : 2020 07 31
  */
 @Configuration
 public class RoutingStrategyConfig {

@@ -4,7 +4,6 @@ import com.example.multidatasource.dynamicdatasource.MultiDataSourceHolder;
 
 /**
  * @author : dengchao
- * @date : 2020 07 31
  */
 public class BaseDomain {
     private String tableSuffix;

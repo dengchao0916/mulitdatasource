@@ -2,7 +2,6 @@ package com.example.multidatasource.constant;
 
 /**
  * @author : dengchao
- * @date : 2020 07 31
  */
 public class Constant {
     /**
