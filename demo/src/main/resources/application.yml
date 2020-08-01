@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: demo
+  datasource:
+    #第一个数据源
+    druid0username: root
+    druid0password: admin
+    druid0jdbcUrl: jdbc:mysql://localhost:3306/test
+    druid0driverClass: com.mysql.jdbc.Driver
+    #第二个数据源
+    druid1username: root
+    druid1password: admin
+    druid1jdbcUrl: jdbc:mysql://localhost:3306/test1
+    druid1driverClass: com.mysql.jdbc.Driver
+
+#分表分库属性
+dsroutingset:
+  dataSourceNum: 2
+  tableNum: 2
+  #指定路由字段
+  routingField: age
+  tableSuffixStyle: '%04d'
+  tableSuffixConnect: _
+  routingStrategy: ROUTING_DS_TABLE_STRATEGY
