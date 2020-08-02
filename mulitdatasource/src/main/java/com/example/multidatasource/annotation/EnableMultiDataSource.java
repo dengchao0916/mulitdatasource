@@ -1,7 +1,6 @@
 package com.example.multidatasource.annotation;
 
-import com.example.multidatasource.config.DataSourceConfig;
-import com.example.multidatasource.config.RoutingStrategyConfig;
+import com.example.multidatasource.register.MultiDataSourceRegister;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.ElementType;
@@ -14,6 +13,6 @@ import java.lang.annotation.Target;
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Import({DataSourceConfig.class, RoutingStrategyConfig.class})
+@Import({MultiDataSourceRegister.class})
 public @interface EnableMultiDataSource {
 }

@@ -27,7 +27,7 @@ import java.lang.reflect.Method;
 @Slf4j
 public class RoutingAspect {
 
-    @Autowired
+    @Autowired(required = false)
     private IRouting routing;
 
     @Pointcut("@annotation(com.example.multidatasource.annotation.Router)")
@@ -46,16 +46,20 @@ public class RoutingAspect {
         Object[] args = joinPoint.getArgs();
 
         boolean havingRoutingField = false;
-
         if (args != null && args.length > 0) {
             for (int index = 0; index < args.length; index++) {
                 String routingFieldValue = BeanUtils.getProperty(args[index], routingField);
                 if (!StringUtils.isEmpty(routingFieldValue)) {
-                    String dbKey = routing.calDataSourceKey(routingFieldValue);
-                    String tbKey = routing.calTableKey(routingFieldValue);
-                    log.info("选择的数据库是{},选择的表是{}",dbKey,tbKey);
-                    havingRoutingField = true;
-                    break;
+                    try {
+                        String dbKey = routing.calDataSourceKey(routingFieldValue);
+                        String tbKey = routing.calTableKey(routingFieldValue);
+                        log.info("选择的数据库是{},选择的表是{}",dbKey,tbKey);
+                        havingRoutingField = true;
+                        break;
+                    } catch (Exception e) {
+                        log.error("数据库操作失败:",e);
+                        return;
+                    }
                 } else {
 
                 }

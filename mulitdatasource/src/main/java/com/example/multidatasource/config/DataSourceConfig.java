@@ -9,7 +9,6 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,7 +35,6 @@ public class DataSourceConfig {
     private DsRoutingSetProperties dsRoutingSetProperties;
 
     @Bean
-    @ConfigurationProperties(prefix = "spring.datasource.druid0")
     public DataSource dataSource0() {
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setUsername(druidProperties.getDruid0username());
@@ -47,7 +45,6 @@ public class DataSourceConfig {
     }
 
     @Bean
-    @ConfigurationProperties(prefix = "spring.datasource.druid1")
     public DataSource dataSource1() {
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setUsername(druidProperties.getDruid1username());
